@@ -435,14 +435,20 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
         } else if(isEmpty()){
             throw new IllegalCallerException("No se puede eliminar un elemento de un arbol vacio");
         }else{
-            VerticeRojinegro aux=convertirRojiNegro(search2(raiz, elemento));
+            VerticeRojinegro aux=convertirRojiNegro(search2(raiz, elemento));//el vertice a eliminar
             if(aux==null){
                 throw new IllegalCallerException("No se puede eliminar un elemento que no está en el árbol");
             }else{
                 if(aux.color==Color.ROJO){
                     super.delete(raiz,elemento);
                 }else if(!aux.hayDerecho()&&!aux.hayIzquierdo()){
-                    //if()
+                    if(elemento.equals(raiz.elemento)){
+                        raiz=null;
+                        elementos=0;
+                    }else{
+                        rebalancea2(aux);
+                        super.delete(raiz, elemento);
+                    }
                 }else if(!aux.hayDerecho()&&convertirRojiNegro(aux.izquierdo).color==Color.ROJO){
                         convertirRojiNegro(aux.izquierdo).color=Color.NEGRO;
                         super.delete(raiz,elemento);
@@ -479,7 +485,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
         VerticeRojinegro p=getPadre(v);
         VerticeRojinegro w=getHermano(v);
         //Caso 2
-        if(w.color==Color.ROJO){
+        if(isRojo(w)){
             p.color=Color.ROJO;
             if(isIzquierdo(v)){
                 rotar(p, true);
@@ -490,8 +496,10 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
             w=getHermano(v);
         }else{
             //CAso 3
-            if(isNegro(convertirRojiNegro(w.izquierdo))&&isNegro(convertirRojiNegro(w.derecho))){
-                w.color=Color.ROJO;
+            if(isNegro(p)&&isNegro(convertirRojiNegro(izquierdo(w)))&&isNegro(convertirRojiNegro(derecho(w)))){
+                if(w!=null){
+                    w.color=Color.ROJO;
+                }
                 rebalancea2(p);
             }
         }
@@ -499,16 +507,20 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
         //Caso 4
         if(p.color==Color.ROJO){
             p.color=Color.NEGRO;
-            w.color=Color.ROJO;
+            if(w!=null){
+                w.color=Color.ROJO;
+            }
             return;
         }
 
         //Caso 5
-        if(isDerecho(v)&&isRojo(convertirRojiNegro(w.derecho))&&isNegro(convertirRojiNegro(w.izquierdo))){
+        if(isDerecho(v)&&isRojo(convertirRojiNegro(derecho(w)))&&isNegro(convertirRojiNegro(izquierdo(w)))){
             p.color=Color.ROJO;
-            w.color=Color.NEGRO;
+            if(w!=null){
+                w.color=Color.NEGRO;
+            }
             rotar(w,true);
-        }else if(isIzquierdo(v)&&isRojo(convertirRojiNegro(w.izquierdo))&&isNegro(convertirRojiNegro(w.derecho))){
+        }else if(isIzquierdo(v)&&isRojo(convertirRojiNegro(izquierdo(w)))&&isNegro(convertirRojiNegro(derecho(w)))){
             p.color=Color.ROJO;
             w.color=Color.NEGRO;
             rotar(w,false);
@@ -526,13 +538,15 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
             w.color=c;
             rotar(p,false);
             return;
-        }else if(isIzquierdo(v)&&isRojo(convertirRojiNegro(w.derecho))){
+        }else if(isIzquierdo(v)&&isRojo(convertirRojiNegro(derecho(w)))){
             Color c=p.color;
             p.color=Color.NEGRO;
             if(izquierdo(getTio(v))!=null){
                 izquierdo(getTio(v)).color=Color.NEGRO;
             }
-            w.color=c;
+            //if(w!=null){
+                w.color=c;
+            //}
             rotar(p,true);
             return;
         }

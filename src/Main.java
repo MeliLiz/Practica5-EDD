@@ -42,6 +42,9 @@ public class Main {
         System.out.println("Eliminamos el 15");
         arbol.delete(15);
         System.out.println(arbol);
+        System.out.println("Eliminamos el 80");
+        arbol.delete(80);
+        System.out.println(arbol);
         
         /*System.out.println("Creamos un arbol a partir de una lista");
         Lista<Integer> lista=new Lista<Integer>();
