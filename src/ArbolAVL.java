@@ -4,29 +4,29 @@ import java.util.Iterator;
 import src.edd.ArbolBinarioBusqueda;
 
 /**
- * Clase que moldea el comportamiento de los árboles AVL, los cuales cumplen que
+ * Clase que moldea el comportamiento de los arboles AVL, los cuales cumplen que
  * la diferencia de
- * la altura de sus subárboles izquierdo y derecho es igual o en un rango de uno
+ * la altura de sus subarboles izquierdo y derecho es igual o en un rango de uno
  * a dos
  */
 
 public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
 
     /**
-     * Clase interna protegida para vértices de árboles AVL. La única
-     * diferencia con los vértices tienen altura
+     * Clase interna protegida para vertices de arboles AVL. La unica
+     * diferencia con los vertices tienen altura
      */
     protected class VerticeAVL extends Vertice {
 
         /**
-         * Altura del vértice
+         * Altura del vertice
          */
         public int altura;
 
         /**
-         * Constructor de un vértice AVL
+         * Constructor de un vertice AVL
          * 
-         * @param elemento dato del vértice
+         * @param elemento dato del vertice
          */
         public VerticeAVL(T elemento) {
             super(elemento);
@@ -34,7 +34,7 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
         }
 
         /**
-         * La altura del vértice
+         * La altura del vertice
          * 
          * @return
          */
@@ -43,14 +43,14 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
         }
 
         /**
-         * Representación en cadena del vértice AVL que devuelve el elemento y su altura
+         * Representacion en cadena del vertice AVL que devuelve el elemento y su altura
          */
         public String toString() {
             return this.elemento.toString() + "(" + this.altura + ")";
         }
 
         /**
-         * Método que devuelve el hijo izquierdo del vértice v
+         * Metodo que devuelve el hijo izquierdo del vertice v
          * 
          * @param v
          * @return
@@ -64,7 +64,7 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
         }
 
         /**
-         * Mpetodo que devuelve el hijo derecho del vértice v
+         * Mpetodo que devuelve el hijo derecho del vertice v
          * 
          * @param v
          * @return
@@ -78,13 +78,13 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
         }
 
         /**
-         * Compara el vértice con otro objeto. La comparación es
+         * Compara el vertice con otro objeto. La comparacion es
          * <em>recursiva</em>.
          * 
-         * @param o el objeto con el cual se comparará el vértice.
+         * @param o el objeto con el cual se comparara el vertice.
          * @return <code>true</code> si el objeto es instancia de la clase
          *         {@link VerticeRojinegro}, su elemento es igual al elemento de
-         *         éste vértice, los descendientes de ambos son recursivamente
+         *         este vertice, los descendientes de ambos son recursivamente
          *         iguales, y los colores son iguales; <code>false</code> en
          *         otro caso.
          */
@@ -99,14 +99,14 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
     }
 
     /**
-     * Constructor de un árbol AVL
+     * Constructor de un arbol AVL
      */
     public ArbolAVL() {
         super();
     }
 
     /**
-     * Constructor de un árbol AVL que recibe una colección
+     * Constructor de un arbol AVL que recibe una coleccion
      * 
      * @param coleccion
      */
@@ -117,7 +117,7 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
     /**
      * Constructor que recibe una lista
      * @param lista la lista de elementos
-     * @param ordenada si la lista está ordenada (parmetro solo para sobreescribir el constructor del padre)
+     * @param ordenada si la lista esta ordenada (parmetro solo para sobreescribir el constructor del padre)
      * @param menorAmayor si la lista esta ordenada de menor a mayor (parmetro solo para sobreescribir el constructor del padre)
      */
     public ArbolAVL(Lista<T> lista, boolean ordenada, boolean menorAmayor){
@@ -131,52 +131,52 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
     }
 
     /**
-     * Método que balancea el árbol AVL luego de insertar o eliminar y se asegura
+     * Metodo que balancea el arbol AVL luego de insertar o eliminar y se asegura
      * que se cumpla
-     * que la diferencia de altura de sus subárboles izquierdo y derecho es igual o
+     * que la diferencia de altura de sus subarboles izquierdo y derecho es igual o
      * en un rango de uno a dos
      * 
      * @param v
      * @return
      */
     private VerticeAVL balancear(VerticeAVL v) {
-        // si el vértice es distinto de null
+        // si el vertice es distinto de null
         if (v != null) {
-            // creamos un nuevo vértice y lo inicializamos en null
+            // creamos un nuevo vertice y lo inicializamos en null
             VerticeAVL a = null;
-            // si la altura del hijo derecho del vértoce es igual a la altura del hijo
-            // izquierdo del vértice más 2
+            // si la altura del hijo derecho del vertoce es igual a la altura del hijo
+            // izquierdo del vertice mas 2
             if (altura(convertirVertice(v.derecho)) == (altura(convertirVertice(v.izquierdo)) + 2)) {
-                // si el hijo derecho del vértice es distinto de null
+                // si el hijo derecho del vertice es distinto de null
                 if (v.hayDerecho()) {
-                    // si la altura del nieto derecho del vértice es igual a la altura del hijo
-                    // izquierdo del vértice más 1
+                    // si la altura del nieto derecho del vertice es igual a la altura del hijo
+                    // izquierdo del vertice mas 1
                     if (altura(convertirVertice(v.derecho.derecho)) == (altura(convertirVertice(v.izquierdo)) + 1)) {
-                        // usamos el vértice que creamos para rotar el vértice
+                        // usamos el vertice que creamos para rotar el vertice
                         a = rotar(v, true);
-                        // si la altura del nieto derecho del vértice es igual a la altura del hijo
-                        // izquierdo del vértice
+                        // si la altura del nieto derecho del vertice es igual a la altura del hijo
+                        // izquierdo del vertice
                     } else if (altura(convertirVertice(v.derecho.derecho)) == (altura(convertirVertice(v.izquierdo)))) {
-                        // rotamos el hijo derecho del vértice.
+                        // rotamos el hijo derecho del vertice.
                         rotar(convertirVertice(v.derecho), false);
                         a = rotar(convertirVertice(v), true);
                         // a=rotar2(v, false);
                     }
                 }
-                // si la altura del hijo izquierdo del vértice es igual a la altura del hijo
-                // derecho del vértice más 2
+                // si la altura del hijo izquierdo del vertice es igual a la altura del hijo
+                // derecho del vertice mas 2
             } else if (altura(convertirVertice(v.izquierdo)) == (altura(convertirVertice(v.derecho)) + 2)) {
-                // si el hijo izquierdo del vértice es distinto de null
+                // si el hijo izquierdo del vertice es distinto de null
                 if (v.hayIzquierdo()) {
-                    // si la altura del nieto izquierdo del vértice es igual a la altura del hijo
-                    // derecho del vértice más 1
+                    // si la altura del nieto izquierdo del vertice es igual a la altura del hijo
+                    // derecho del vertice mas 1
                     if (altura(convertirVertice(v.izquierdo.izquierdo)) == (altura(convertirVertice(v.derecho)) + 1)) {
-                        // rotamos el vértice
+                        // rotamos el vertice
                         a = rotar(v, false);
-                        // si la altura del nieto izquierdo del vértice es igual a la altura del hijo
-                        // derecho del vértice
+                        // si la altura del nieto izquierdo del vertice es igual a la altura del hijo
+                        // derecho del vertice
                     } else if (altura(convertirVertice(v.izquierdo.izquierdo)) == altura(convertirVertice(v.derecho))) {
-                        // rotamos el hijo izquierdo del vértice
+                        // rotamos el hijo izquierdo del vertice
                         rotar(convertirVertice(v.izquierdo), true);
                         a = rotar(v, false);
                         // a=rotar2(v, true);
@@ -191,7 +191,7 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
     }
 
     /**
-     * Método que actualiza la altura del vértice sumando 1
+     * Metodo que actualiza la altura del vertice sumando 1
      * 
      * @param v
      */
@@ -202,7 +202,7 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
     }
 
     /**
-     * Método privado que devuelve la altura del vértice
+     * Metodo privado que devuelve la altura del vertice
      * 
      * @param v
      * @return
@@ -216,102 +216,102 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
     }
 
     /**
-     * Método que rota el vértice para rebalancear el árbol
+     * Metodo que rota el vertice para rebalancear el arbol
      * 
      * @param vertice
      * @param izquierda
      * @return
      */
     public VerticeAVL rotar(VerticeAVL vertice, boolean izquierda) {
-        // creamos un nuevo vérticeAVL auxiliar
+        // creamos un nuevo verticeAVL auxiliar
         VerticeAVL aux;
-        // si el vértice es distinto de null
+        // si el vertice es distinto de null
         if (vertice != null) {
             // y la variable izquierda se inicializa en true
             if (izquierda) {
-                // creamos un nuevo vértice padre distinto de null
+                // creamos un nuevo vertice padre distinto de null
                 VerticeAVL padre = null;
-                // si el vértice tiene padre
+                // si el vertice tiene padre
                 if (vertice.hayPadre()) {
                     padre = convertirVertice(vertice.padre);
                 }
-                // hacemos que aux sea el hijo derecho del vértice
+                // hacemos que aux sea el hijo derecho del vertice
                 aux = derecho(vertice);
-                // hacemos que el hijo derecho del vértice sea el hijo izquierdo de aux
+                // hacemos que el hijo derecho del vertice sea el hijo izquierdo de aux
                 vertice.derecho = izquierdo(aux);
-                // si el hijo derecho del vértice es distinto de null
+                // si el hijo derecho del vertice es distinto de null
                 if (vertice.derecho != null) {
-                    // hacemos que el padre del hijo derecho del vértice sea el vértice
+                    // hacemos que el padre del hijo derecho del vertice sea el vertice
                     vertice.derecho.padre = vertice;
                 }
                 // si aux es distinto de null
                 if (aux != null) {
-                    // hacemos que el hijo izquierdo de aux sea el vértice
+                    // hacemos que el hijo izquierdo de aux sea el vertice
                     aux.izquierdo = vertice;
-                    // hacemos que el padre del vértice sea aux
+                    // hacemos que el padre del vertice sea aux
                     vertice.padre = aux;
                 }
-                // si el vértice aux es distinto de null
+                // si el vertice aux es distinto de null
                 if (aux != null) {
-                    // hacemos que el padre de aux sea el padre del vértice
+                    // hacemos que el padre de aux sea el padre del vertice
                     aux.padre = padre;
                 }
-                // si el vértice es distinto de null
+                // si el vertice es distinto de null
                 if (padre != null) {
-                    // si el padre tiene hijo derecho y es igual que el vértice
+                    // si el padre tiene hijo derecho y es igual que el vertice
                     if (padre.hayDerecho() && padre.derecho.elemento.equals(vertice.elemento)) {
-                        // el hijo derecho del padre será aux
+                        // el hijo derecho del padre sera aux
                         padre.derecho = aux;
                     } else {
-                        // el hijo izquierdo del padre será aux
+                        // el hijo izquierdo del padre sera aux
                         padre.izquierdo = aux;
                     }
                 }
 
             } // la variable izquierda se inicializa en false
             else {
-                // creamos un nuevo vérticeAVL padre que inicializa en null
+                // creamos un nuevo verticeAVL padre que inicializa en null
                 VerticeAVL padre = null;
-                // si el vértice tiene padre
+                // si el vertice tiene padre
                 if (vertice.hayPadre()) {
-                    // creamos un nuveo vértice que sea padre del vértice original
+                    // creamos un nuveo vertice que sea padre del vertice original
                     padre = convertirVertice(vertice.padre);
                 }
-                // hacemos que aux sea el hijo izquierdo del vértice
+                // hacemos que aux sea el hijo izquierdo del vertice
                 aux = izquierdo(vertice);
-                // hacemos que el hijo izquierdo del vértice sea el hijo derecho de aux
+                // hacemos que el hijo izquierdo del vertice sea el hijo derecho de aux
                 vertice.izquierdo = derecho(aux);
-                // si el hijo izquierdo del vértice es distinto de null
+                // si el hijo izquierdo del vertice es distinto de null
                 if (vertice.izquierdo != null) {
-                    // hacemos que el padre del hijo izquierdo del vértice sea el vértice
+                    // hacemos que el padre del hijo izquierdo del vertice sea el vertice
                     vertice.izquierdo.padre = vertice;
                 }
                 // si aux es distinto de null
                 if (aux != null) {
-                    // hacemos que el hijo derecho de aux sea el vértice
+                    // hacemos que el hijo derecho de aux sea el vertice
                     aux.derecho = vertice;
-                    // hacemos que el padre del vértice sea aux
+                    // hacemos que el padre del vertice sea aux
                     vertice.padre = aux;
                 }
-                // si el vértice aux es distinto de null
+                // si el vertice aux es distinto de null
                 if (aux != null) {
-                    // hacemos que el padre de aux sea el padre del vértice
+                    // hacemos que el padre de aux sea el padre del vertice
                     aux.padre = padre;
                 }
-                // si el vértice padre es distinto de null
+                // si el vertice padre es distinto de null
                 if (padre != null) {
-                    // si el padre tiene hijo derecho y es igual que el vértice
+                    // si el padre tiene hijo derecho y es igual que el vertice
                     if (padre.hayDerecho() && padre.derecho.elemento.equals(vertice.elemento)) {
-                        // el hijo derecho del padre será aux
+                        // el hijo derecho del padre sera aux
                         padre.derecho = aux;
                     } else {
-                        // el hijo izquierdo del padre será aux
+                        // el hijo izquierdo del padre sera aux
                         padre.izquierdo = aux;
                     }
                 }
 
             }
-            // actualizamos la altura del vértice y de aux
+            // actualizamos la altura del vertice y de aux
             actualizarAltura(vertice);
             actualizarAltura(aux);
             return aux;
@@ -322,7 +322,7 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
 
 
     /**
-     * Método que genera un nodo de tipo VerticeAVL para devolver el hijo derecho de
+     * Metodo que genera un nodo de tipo VerticeAVL para devolver el hijo derecho de
      * v
      * 
      * @param v
@@ -337,7 +337,7 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
     }
 
     /**
-     * Método que genera un nodo de tipo VerticeAVL para devolver el hijo izquierdo
+     * Metodo que genera un nodo de tipo VerticeAVL para devolver el hijo izquierdo
      * de v
      * 
      * @param v
@@ -352,7 +352,7 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
     }
 
     /**
-     * Método que genera convierte un Vértice tradicional a un vértice AVL
+     * Metodo que genera convierte un Vertice tradicional a un vertice AVL
      * 
      * @param v
      * @return
@@ -366,54 +366,54 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
     }
 
     /**
-     * Método que inserta un elemento en el árbol AVL
+     * Metodo que inserta un elemento en el arbol AVL
      * 
      * @param elemento
      */
     public void insertar(T elemento) {
         if (elemento == null) {
-            throw new IllegalArgumentException("No se puede insertar un elemento vacío");
+            throw new IllegalArgumentException("No se puede insertar un elemento vacio");
         }
-        // si el arbol no tiene elementos, el elemento a insertar será la raiz.
+        // si el arbol no tiene elementos, el elemento a insertar sera la raiz.
         if (isEmpty()) {
             raiz = new VerticeAVL(elemento);
             // aumentamos el contador de los elementos
             elementos++;
         } else {
-            // creamos un nuevo vértice que inserta el elemento
+            // creamos un nuevo vertice que inserta el elemento
             VerticeAVL b = insertarAux(convertirVertice(raiz), elemento);
             // si b es diferente de null
             if (b != null) {
-                // la raiz será b
+                // la raiz sera b
                 this.raiz = b;
             }
         }
     }
 
     /**
-     * Método auxiliar de insertar
+     * Metodo auxiliar de insertar
      * 
      * @param vertice
      * @param elemento
      * @return
      */
     private VerticeAVL insertarAux(VerticeAVL vertice, T elemento) {
-        // si el elemento a insertar es distinto del de la raíz
+        // si el elemento a insertar es distinto del de la raiz
         if (!elemento.equals(vertice.elemento)) {
-            // si el elemento es menor que el elemento del vértice
+            // si el elemento es menor que el elemento del vertice
             if (elemento.compareTo(vertice.elemento) < 0) {
-                // si el vértice tiene hijo izquierdo
+                // si el vertice tiene hijo izquierdo
                 if (vertice.hayIzquierdo()) {
-                    // llamamos al método insertarAux con el hijo izquierdo del vértice para crear
-                    // el nuevo vértice
+                    // llamamos al metodo insertarAux con el hijo izquierdo del vertice para crear
+                    // el nuevo vertice
                     insertarAux(convertirVertice(vertice.izquierdo), elemento);
                 } // si no tiene hijo izquierdo
                 else {
-                    // hacemos un nuevo vértice AVL con el elemento
+                    // hacemos un nuevo vertice AVL con el elemento
                     VerticeAVL nuevo = new VerticeAVL(elemento);
-                    // el hijo izquierdo del vértice será el nuevo vértice
+                    // el hijo izquierdo del vertice sera el nuevo vertice
                     vertice.izquierdo = nuevo;
-                    // el padre del vértice insertado será el vértice original
+                    // el padre del vertice insertado sera el vertice original
                     nuevo.padre = vertice;
                     // aumentamos el contador de los elementos
                     elementos++;
@@ -421,31 +421,31 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
                     // System.out.println(nuevo.padre);
                 }
 
-            } // si el elemento es mayor que el elemento del vértice
+            } // si el elemento es mayor que el elemento del vertice
             else {
-                // si el vértice tiene hijo derecho
+                // si el vertice tiene hijo derecho
                 if (vertice.hayDerecho()) {
-                    // llamamos al método insertarAux con el hijo derecho del vértice para crear el
-                    // nuevo vértice
+                    // llamamos al metodo insertarAux con el hijo derecho del vertice para crear el
+                    // nuevo vertice
                     insertarAux(convertirVertice(vertice.derecho), elemento);
                 } else {
-                    // hacemos un nuevo vértice AVL con el elemento
+                    // hacemos un nuevo vertice AVL con el elemento
                     VerticeAVL nuevo = new VerticeAVL(elemento);
-                    // el hijo derecho del vértice será el nuevo vértice
+                    // el hijo derecho del vertice sera el nuevo vertice
                     vertice.derecho = nuevo;
-                    // el padre del vértice insertado será el vértice original
+                    // el padre del vertice insertado sera el vertice original
                     nuevo.padre = vertice;
                     // aumentamos el contador de los elementos
                     elementos++;
                 }
 
             }
-            // generamos un vértice padre para balancear el árbol a partir del vértice que
+            // generamos un vertice padre para balancear el arbol a partir del vertice que
             // ha sido insertado
             VerticeAVL padre = balancear(vertice);
             // System.out.println("Vertice: "+vertice+" Padre: "+padre);
             // System.out.println(vertice.izquierdo);
-            // actualizamos la altura del vértice original
+            // actualizamos la altura del vertice original
             actualizarAltura(vertice);
             return padre;
         }
@@ -453,7 +453,7 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
     }
 
     /**
-     * Método para eliminar elementos del árbol AVL
+     * Metodo para eliminar elementos del arbol AVL
      * 
      * @param elemento
      */
@@ -461,7 +461,7 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
         if (elemento == null) {
             throw new IllegalArgumentException("No se puede eliminar un elemento vacio");
         } else {
-            // llamamos el método eliminar para aplicarlo sobre la raíz y el elemento
+            // llamamos el metodo eliminar para aplicarlo sobre la raiz y el elemento
             raiz = eliminar(convertirVertice(raiz), elemento);
             // decrecemos el contador de los elementos
             elementos--;
@@ -470,17 +470,17 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
     }
 
     /**
-     * Método auxiliar para eliminar elementos del árbol AVL
+     * Metodo auxiliar para eliminar elementos del arbol AVL
      * 
      * @param vertice
      * @param elemento
      * @return
      */
     private VerticeAVL eliminar(VerticeAVL vertice, T elemento) {
-        if (vertice == null) {// si el vertice es vacío no podemos aplicar el metodo
+        if (vertice == null) {// si el vertice es vacio no podemos aplicar el metodo
             throw new IllegalArgumentException("El vertice es vacio");
         }
-        // Si el elemento no está en el árbol no podemos eliminarlo
+        // Si el elemento no esta en el arbol no podemos eliminarlo
         Vertice a = search2(raiz, elemento);
         if (a == null) {
             throw new IllegalArgumentException("El elemento a eliminar no se encuentra en el arbol");
@@ -491,13 +491,13 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
         } else if (elemento.compareTo(vertice.elemento) > 0) {// si es mayor nos vamos a la derecha
             eliminar(convertirVertice(vertice.derecho), elemento);
         } else {
-            // si el vértice no tiene hijo derecho ni hijo izquierdo
+            // si el vertice no tiene hijo derecho ni hijo izquierdo
             if (!vertice.hayDerecho() && !vertice.hayIzquierdo()) {
                 // pero si tiene padre
                 if (vertice.hayPadre()) {
                     // System.out.println("Vertice: "+vertice);
                     // System.out.println("Padre: "+vertice.padre);
-                    // si padre el elemento tiene hijo izquierdo y es el mismo que el vértice
+                    // si padre el elemento tiene hijo izquierdo y es el mismo que el vertice
                     if (vertice.padre.hayIzquierdo() && vertice.padre.izquierdo.elemento.equals(vertice.elemento)) {
                         vertice.padre.izquierdo = null;
                     } else {
@@ -511,11 +511,11 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
                 // System.out.println(vertice.padre.derecho);
                 vertice = null;
 
-                // si el vértice no tiene hijo izquierdo
+                // si el vertice no tiene hijo izquierdo
             } else if (!vertice.hayIzquierdo()) {
-                // pero el vértice tiene padre
+                // pero el vertice tiene padre
                 if (vertice.hayPadre()) {
-                    // si el padre tiene hijo izquierdo y es el mismo que el vértice
+                    // si el padre tiene hijo izquierdo y es el mismo que el vertice
                     if (vertice.padre.hayIzquierdo() && vertice.padre.izquierdo.elemento.equals(vertice.elemento)) {
                         vertice.padre.izquierdo = vertice.derecho;
                     } else {
@@ -527,7 +527,7 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
                 }
                 // aux=vertice;
                 // vertice=convertirVertice(vertice.derecho);
-                // si el vértice no tiene hijo derecho
+                // si el vertice no tiene hijo derecho
             } else if (!vertice.hayDerecho()) {
                 // pero si tiene padre
                 if (vertice.hayPadre()) {
@@ -543,16 +543,16 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
                 // aux=vertice;
                 // vertice=convertirVertice(vertice.izquierdo);
             } else {
-                // llamamos al método encontrar minimo para encontrar el elemento mínimo del
-                // subárbol derecho
+                // llamamos al metodo encontrar minimo para encontrar el elemento minimo del
+                // subarbol derecho
                 T b = encontrarMin(convertirVertice(vertice.derecho));
-                // eliminamos a b del árbol
+                // eliminamos a b del arbol
                 eliminar(convertirVertice(raiz), b);
                 // intercambiamos
                 vertice.elemento = b;
             }
         }
-        // balanceamos el árbol
+        // balanceamos el arbol
         VerticeAVL padre = balancear(vertice);
         // System.out.println(padre);
         // actualizamos alturas
@@ -561,27 +561,27 @@ public class ArbolAVL<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
     }
 
     /**
-     * Método auxiliar para encontrar el elemento mínimo del subárbol derecho
+     * Metodo auxiliar para encontrar el elemento minimo del subarbol derecho
      * 
      * @param vertice
      * @return
      */
     private T encontrarMin(VerticeAVL vertice) {
         if (vertice != null) {
-            // si el vértice tiene hijo izquierdo
+            // si el vertice tiene hijo izquierdo
             if (vertice.izquierdo != null) {
-                // llamamos al método encontrar minimo para encontrar el elemento mínimo del
-                // subárbol izquierdo
+                // llamamos al metodo encontrar minimo para encontrar el elemento minimo del
+                // subarbol izquierdo
                 T b = encontrarMin(convertirVertice(vertice.izquierdo));
                 return b;
             } // si no tiene hijo izquierdo
             else {
-                // retornamos el elemento del vértice
+                // retornamos el elemento del vertice
                 T b = vertice.elemento;
                 return b;
             }
         } else {
-            throw new IllegalCallerException("No se puede usar este metodo con un vertice vacío");
+            throw new IllegalCallerException("No se puede usar este metodo con un vertice vacio");
         }
     }
 

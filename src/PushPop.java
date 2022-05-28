@@ -59,16 +59,16 @@ public abstract class PushPop<T> {
     }
 
     /**
-     * Regresa el número de elementos en la estructura.
+     * Regresa el numero de elementos en la estructura.
      * 
-     * @return el número de elementos en la estructura.
+     * @return el numero de elementos en la estructura.
      */
     public int size() {
         return longi;
     }
 
     /**
-     * Vacía la estructura.
+     * Vacia la estructura.
      * 
      */
     public void empty() {
@@ -77,9 +77,9 @@ public abstract class PushPop<T> {
     }
 
     /**
-     * Nos dice si la estructura es vacía.
+     * Nos dice si la estructura es vacia.
      * 
-     * @return <code>true</code> si la estructura es vacía, <code>false</code> en
+     * @return <code>true</code> si la estructura es vacia, <code>false</code> en
      *         otro caso.
      */
     public boolean isEmpty() {
@@ -102,7 +102,7 @@ public abstract class PushPop<T> {
         }
         @SuppressWarnings("unchecked") PushPop<T> pp = (PushPop<T>)o;
         if (this.longi != pp.longi) {
-            System.out.println("Los tamaños no son iguales.");
+            System.out.println("Los tamawos no son iguales.");
             return false;
         }
         if (this.isEmpty() && pp.isEmpty()) {

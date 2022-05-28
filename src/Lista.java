@@ -82,7 +82,7 @@ public class Lista<T> implements Collection<T> {
     private int longi;
 
     /**
-     * Metodo para obtener el primer elemento de la lista. Si la lista es vacía regresamos null
+     * Metodo para obtener el primer elemento de la lista. Si la lista es vacia regresamos null
      * @return
      */
     public T peekCabeza(){
@@ -122,7 +122,7 @@ public class Lista<T> implements Collection<T> {
 
     /**
      * Agrega un elemento al inicio de la lista. Si la lista no tiene elementos,
-     * el elemento a agregar será el primero y último.
+     * el elemento a agregar sera el primero y ultimo.
      * 
      * @param elemento el elemento a agregar.
      * @throws IllegalArgumentException si <code>elemento</code> es
@@ -145,7 +145,7 @@ public class Lista<T> implements Collection<T> {
 
     /**
      * Agrega un elemento al final de la lista. Si la lista no tiene elementos,
-     * el elemento a agregar será el primero y último.
+     * el elemento a agregar sera el primero y ultimo.
      * 
      * @param elemento el elemento a agregar.
      * @throws IllegalArgumentException si <code>elemento</code> es
@@ -232,20 +232,20 @@ public class Lista<T> implements Collection<T> {
     }
 
     /**
-     * Regresa el número de elementos en la lista.
+     * Regresa el numero de elementos en la lista.
      * 
-     * @return el número de elementos en la lista.
+     * @return el numero de elementos en la lista.
      */
     public int size() {
         return longi;
     }
 
     /**
-     * Nos dice si un elemento está contenido en la lista.
+     * Nos dice si un elemento esta contenido en la lista.
      * 
-     * @param elemento el elemento que queremos verificar si está contenido en
+     * @param elemento el elemento que queremos verificar si esta contenido en
      *                 la lista.
-     * @return <code>true</code> si el elemento está contenido en la lista,
+     * @return <code>true</code> si el elemento esta contenido en la lista,
      *         <code>false</code> en otro caso.
      */
     public boolean contains(T elemento) {
@@ -256,7 +256,7 @@ public class Lista<T> implements Collection<T> {
     }
 
     /**
-     * Vacía la lista.
+     * Vacia la lista.
      * 
      */
     public void empty() {
@@ -265,9 +265,9 @@ public class Lista<T> implements Collection<T> {
     }
 
     /**
-     * Nos dice si la lista es vacía.
+     * Nos dice si la lista es vacia.
      * 
-     * @return <code>true</code> si la lista es vacía, <code>false</code> en
+     * @return <code>true</code> si la lista es vacia, <code>false</code> en
      *         otro caso.
      */
     public boolean isEmpty() {
@@ -305,7 +305,7 @@ public class Lista<T> implements Collection<T> {
         @SuppressWarnings("unchecked")
         Lista<T> lista2 = (Lista<T>) o;
         if (this.longi != lista2.longi) {
-            System.out.println("Los tamaños no son iguales.");
+            System.out.println("Los tamawos no son iguales.");
             return false;
         }
         if (this.isEmpty() && lista2.isEmpty()) {
@@ -474,7 +474,7 @@ public class Lista<T> implements Collection<T> {
      */
     public T eliminaEnPos(int i) {
         if(isEmpty()){
-            throw new NullPointerException("No se puede eliminar un elemento en una lista vacía");
+            throw new NullPointerException("No se puede eliminar un elemento en una lista vacia");
         }else{
             T regreso;
             if(longi==1){
@@ -700,9 +700,9 @@ public class Lista<T> implements Collection<T> {
     }
 
     /**
-     * Regresa un iterador para recorrer la lista en una dirección.
+     * Regresa un iterador para recorrer la lista en una direccion.
      * 
-     * @return un iterador para recorrer la lista en una dirección.
+     * @return un iterador para recorrer la lista en una direccion.
      */
     public Iterator<T> iterator() {
         return new Iterador();

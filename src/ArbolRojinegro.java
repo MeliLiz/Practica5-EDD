@@ -2,25 +2,25 @@ package src.edd;
 import src.edd.ArbolBinarioBusqueda;
 
 /**
- * Clase para árboles rojinegros. Un árbol rojinegro cumple las siguientes
+ * Clase para arboles rojinegros. Un arbol rojinegro cumple las siguientes
  * propiedades:
  *
  * <ol>
- * <li>Todos los vértices son NEGROS o ROJOS.</li>
- * <li>La raíz es NEGRA.</li>
- * <li>Todas las hojas (<tt>null</tt>) son NEGRAS (al igual que la raíz).</li>
- * <li>Un vértice ROJO siempre tiene dos hijos NEGROS.</li>
- * <li>Todo camino de un vértice a alguna de sus hojas descendientes tiene el
- * mismo número de vértices NEGROS.</li>
+ * <li>Todos los vertices son NEGROS o ROJOS.</li>
+ * <li>La raiz es NEGRA.</li>
+ * <li>Todas las hojas (<tt>null</tt>) son NEGRAS (al igual que la raiz).</li>
+ * <li>Un vertice ROJO siempre tiene dos hijos NEGROS.</li>
+ * <li>Todo camino de un vertice a alguna de sus hojas descendientes tiene el
+ * mismo numero de vertices NEGROS.</li>
  * </ol>
  *
- * Los árboles rojinegros se autobalancean.
+ * Los arboles rojinegros se autobalancean.
  */
 public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqueda<T> {
     /**
-     * Clase interna protegida para vértices de árboles rojinegros. La única
-     * diferencia con los vértices de árbol binario, es que tienen un campo para
-     * el color del vértice.
+     * Clase interna protegida para vertices de arboles rojinegros. La unica
+     * diferencia con los vertices de arbol binario, es que tienen un campo para
+     * el color del vertice.
     */
     protected class VerticeRojinegro extends Vertice {
         public Color color;
@@ -31,9 +31,9 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
         }
         
         /**
-         * Regresa una representación en cadena del vértice rojinegro.
+         * Regresa una representacion en cadena del vertice rojinegro.
          * 
-         * @return una representación en cadena del vértice rojinegro.
+         * @return una representacion en cadena del vertice rojinegro.
          */
         public String toString() {
             if (this == null)
@@ -44,13 +44,13 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
         }
         
         /**
-         * Compara el vértice con otro objeto. La comparación es
+         * Compara el vertice con otro objeto. La comparacion es
          * <em>recursiva</em>.
          * 
-         * @param o el objeto con el cual se comparará el vértice.
+         * @param o el objeto con el cual se comparara el vertice.
          * @return <code>true</code> si el objeto es instancia de la clase
          *         {@link VerticeRojinegro}, su elemento es igual al elemento de
-         *         éste vértice, los descendientes de ambos son recursivamente
+         *         este vertice, los descendientes de ambos son recursivamente
          *         iguales, y los colores son iguales; <code>false</code> en
          *         otro caso.
          */
@@ -72,10 +72,10 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
     }
 
     /**
-     * Construye un árbol rojinegro a partir de una colección. El árbol
-     * rojinegro tiene los mismos elementos que la colección recibida.
+     * Construye un arbol rojinegro a partir de una coleccion. El arbol
+     * rojinegro tiene los mismos elementos que la coleccion recibida.
      * 
-     * @param coleccion la colección a partir de la cual creamos el árbol
+     * @param coleccion la coleccion a partir de la cual creamos el arbol
      *                  rojinegro.
      */
     public ArbolRojinegro(Collection<T> coleccion) {
@@ -83,11 +83,11 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
     }
 
     /**
-     * Construye un nuevo vértice, usando una instancia de {@link
+     * Construye un nuevo vertice, usando una instancia de {@link
      * VerticeRojinegro}.
      * 
-     * @param elemento el elemento dentro del vértice.
-     * @return un nuevo vértice rojinegro con el elemento recibido dentro del mismo.
+     * @param elemento el elemento dentro del vertice.
+     * @return un nuevo vertice rojinegro con el elemento recibido dentro del mismo.
      */
     @Override
     protected Vertice nuevoVertice(T elemento) {
@@ -102,11 +102,11 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
     }
 
     /**
-     * Regresa el color del vértice rojinegro.
+     * Regresa el color del vertice rojinegro.
      * 
-     * @param vertice el vértice del que queremos el color.
-     * @return el color del vértice rojinegro.
-     * @throws ClassCastException si el vértice no es instancia de {@link
+     * @param vertice el vertice del que queremos el color.
+     * @return el color del vertice rojinegro.
+     * @throws ClassCastException si el vertice no es instancia de {@link
      *                            VerticeRojinegro}.
      */
     public Color getColor(VerticeArbolBinario<T> vertice) {
@@ -115,9 +115,9 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
     }
 
     /**
-     * Agrega un nuevo elemento al árbol. El método invoca al método {@link
-     * ArbolBinarioOrdenado#agrega}, y después balancea el árbol recoloreando
-     * vértices y girando el árbol como sea necesario.
+     * Agrega un nuevo elemento al arbol. El metodo invoca al metodo {@link
+     * ArbolBinarioOrdenado#agrega}, y despues balancea el arbol recoloreando
+     * vertices y girando el arbol como sea necesario.
      * 
      * @param elemento el elemento a agregar.
      */
@@ -135,15 +135,15 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
     }
 
     /**
-     * Método que inserta un elemento en el árbol AVL
+     * Metodo que inserta un elemento en el arbol AVL
      * 
      * @param elemento
      */
     public void insertar(T elemento) {
         if (elemento == null) {
-            throw new IllegalArgumentException("No se puede insertar un elemento vacío");
+            throw new IllegalArgumentException("No se puede insertar un elemento vacio");
         }
-        // si el arbol no tiene elementos, el elemento a insertar será la raiz.
+        // si el arbol no tiene elementos, el elemento a insertar sera la raiz.
         if (isEmpty()) {
             raiz = new VerticeRojinegro(elemento);
             convertirRojiNegro(raiz).color=Color.NEGRO;
@@ -155,7 +155,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
     }
 
     /**
-     * Método auxiliar de insertar
+     * Metodo auxiliar de insertar
      * 
      * @param vertice
      * @param elemento
@@ -167,18 +167,18 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
                 if (vertice.hayIzquierdo()) {
                     insertarAux(convertirRojiNegro(vertice.izquierdo), elemento);
                 }else {
-                    // hacemos un nuevo vértice AVL con el elemento
+                    // hacemos un nuevo vertice AVL con el elemento
                     VerticeRojinegro nuevo = new VerticeRojinegro(elemento);
-                    // el hijo izquierdo del vértice será el nuevo vértice
+                    // el hijo izquierdo del vertice sera el nuevo vertice
                     vertice.izquierdo = nuevo;
-                    // el padre del vértice insertado será el vértice original
+                    // el padre del vertice insertado sera el vertice original
                     nuevo.padre = vertice;
                     // aumentamos el contador de los elementos
                     elementos++;
                     rebalancea(nuevo);
                 }
             }else {
-                // si el vértice tiene hijo derecho
+                // si el vertice tiene hijo derecho
                 if (vertice.hayDerecho()) {
                     insertarAux(convertirRojiNegro(vertice.derecho), elemento);
                 } else {
@@ -424,10 +424,10 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
 
 
     /**
-     * Elimina un elemento del árbol. El método elimina el vértice que contiene
-     * el elemento, y recolorea y gira el árbol como sea necesario para
+     * Elimina un elemento del arbol. El metodo elimina el vertice que contiene
+     * el elemento, y recolorea y gira el arbol como sea necesario para
      * rebalancearlo.
-     * @param elemento el elemento a eliminar del árbol.
+     * @param elemento el elemento a eliminar del arbol.
      */
     public boolean delete(T elemento) {
         if (elemento == null) {
@@ -437,7 +437,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
         }else{
             VerticeRojinegro aux=convertirRojiNegro(search2(raiz, elemento));//el vertice a eliminar
             if(aux==null){
-                throw new IllegalCallerException("No se puede eliminar un elemento que no está en el árbol");
+                throw new IllegalCallerException("No se puede eliminar un elemento que no esta en el arbol");
             }else{
                 if(aux.color==Color.ROJO){
                     super.delete(raiz,elemento);
@@ -469,7 +469,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
                         aux2 = aux2.izquierdo; // bajamos lo mas que se pueda hacia la izquierda hasta que no tenga hijo izquierdo
                     }
                     T elem = aux2.elemento; // guardamos el elemento del hijo derecho del nodo a aliminar
-                    delete(aux2, elem); // aplicamos la función deleteAux para eliminar el elemento que se convertirá en la raiz luego de eliminar a aux
+                    delete(aux2, elem); // aplicamos la funcion deleteAux para eliminar el elemento que se convertira en la raiz luego de eliminar a aux
                     aux.elemento = elem; // hacemos el intercambio de referencias
                 }
             }
@@ -554,7 +554,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
 
 
      /**
-     * Método que rota el vértice para rebalancear el árbol
+     * Metodo que rota el vertice para rebalancear el arbol
      * 
      * @param vertice
      * @param izquierda
@@ -567,45 +567,45 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
         }
         // creamos un nuevo verticeRojinegro auxiliar
         VerticeRojinegro aux;
-        // si el vértice es distinto de null
+        // si el vertice es distinto de null
         if (vertice != null) {
             // y la variable izquierda se inicializa en true
             if (izquierda) {
-                // creamos un nuevo vértice padre distinto de null
+                // creamos un nuevo vertice padre distinto de null
                 VerticeRojinegro padre = null;
-                // si el vértice tiene padre
+                // si el vertice tiene padre
                 if (vertice.hayPadre()) {
                     padre = convertirRojiNegro(vertice.padre);
                 }
-                // hacemos que aux sea el hijo derecho del vértice
+                // hacemos que aux sea el hijo derecho del vertice
                 aux = derecho(vertice);
-                // hacemos que el hijo derecho del vértice sea el hijo izquierdo de aux
+                // hacemos que el hijo derecho del vertice sea el hijo izquierdo de aux
                 vertice.derecho = izquierdo(aux);
-                // si el hijo derecho del vértice es distinto de null
+                // si el hijo derecho del vertice es distinto de null
                 if (vertice.derecho != null) {
-                    // hacemos que el padre del hijo derecho del vértice sea el vértice
+                    // hacemos que el padre del hijo derecho del vertice sea el vertice
                     vertice.derecho.padre = vertice;
                 }
                 // si aux es distinto de null
                 if (aux != null) {
-                    // hacemos que el hijo izquierdo de aux sea el vértice
+                    // hacemos que el hijo izquierdo de aux sea el vertice
                     aux.izquierdo = vertice;
-                    // hacemos que el padre del vértice sea aux
+                    // hacemos que el padre del vertice sea aux
                     vertice.padre = aux;
                 }
-                // si el vértice aux es distinto de null
+                // si el vertice aux es distinto de null
                 if (aux != null) {
-                    // hacemos que el padre de aux sea el padre del vértice
+                    // hacemos que el padre de aux sea el padre del vertice
                     aux.padre = padre;
                 }
-                // si el vértice es distinto de null
+                // si el vertice es distinto de null
                 if (padre != null) {
-                    // si el padre tiene hijo derecho y es igual que el vértice
+                    // si el padre tiene hijo derecho y es igual que el vertice
                     if (padre.hayDerecho() && padre.derecho.elemento.equals(vertice.elemento)) {
-                        // el hijo derecho del padre será aux
+                        // el hijo derecho del padre sera aux
                         padre.derecho = aux;
                     } else {
-                        // el hijo izquierdo del padre será aux
+                        // el hijo izquierdo del padre sera aux
                         padre.izquierdo = aux;
                     }
                 }
@@ -613,40 +613,40 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
             }else {
                 // creamos un nuevo verticeRojinegro padre que inicializa en null
                 VerticeRojinegro padre = null;
-                // si el vértice tiene padre
+                // si el vertice tiene padre
                 if (vertice.hayPadre()) {
-                    // creamos un nuveo vértice que sea padre del vértice original
+                    // creamos un nuveo vertice que sea padre del vertice original
                     padre = convertirRojiNegro(vertice.padre);
                 }
-                // hacemos que aux sea el hijo izquierdo del vértice
+                // hacemos que aux sea el hijo izquierdo del vertice
                 aux = izquierdo(vertice);
-                // hacemos que el hijo izquierdo del vértice sea el hijo derecho de aux
+                // hacemos que el hijo izquierdo del vertice sea el hijo derecho de aux
                 vertice.izquierdo = derecho(aux);
-                // si el hijo izquierdo del vértice es distinto de null
+                // si el hijo izquierdo del vertice es distinto de null
                 if (vertice.izquierdo != null) {
-                    // hacemos que el padre del hijo izquierdo del vértice sea el vértice
+                    // hacemos que el padre del hijo izquierdo del vertice sea el vertice
                     vertice.izquierdo.padre = vertice;
                 }
                 // si aux es distinto de null
                 if (aux != null) {
-                    // hacemos que el hijo derecho de aux sea el vértice
+                    // hacemos que el hijo derecho de aux sea el vertice
                     aux.derecho = vertice;
-                    // hacemos que el padre del vértice sea aux
+                    // hacemos que el padre del vertice sea aux
                     vertice.padre = aux;
                 }
-                // si el vértice aux es distinto de null
+                // si el vertice aux es distinto de null
                 if (aux != null) {
-                    // hacemos que el padre de aux sea el padre del vértice
+                    // hacemos que el padre de aux sea el padre del vertice
                     aux.padre = padre;
                 }
-                // si el vértice padre es distinto de null
+                // si el vertice padre es distinto de null
                 if (padre != null) {
-                    // si el padre tiene hijo derecho y es igual que el vértice
+                    // si el padre tiene hijo derecho y es igual que el vertice
                     if (padre.hayDerecho() && padre.derecho.elemento.equals(vertice.elemento)) {
-                        // el hijo derecho del padre será aux
+                        // el hijo derecho del padre sera aux
                         padre.derecho = aux;
                     } else {
-                        // el hijo izquierdo del padre será aux
+                        // el hijo izquierdo del padre sera aux
                         padre.izquierdo = aux;
                     }
                 }
@@ -663,7 +663,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
     }
 
     /**
-     * Método que genera un nodo de tipo VerticeRojinegro para devolver el hijo derecho de
+     * Metodo que genera un nodo de tipo VerticeRojinegro para devolver el hijo derecho de
      * v
      * 
      * @param v
@@ -678,7 +678,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
     }
 
     /**
-     * Método que genera un nodo de tipo VerticeRojinegro para devolver el hijo izquierdo
+     * Metodo que genera un nodo de tipo VerticeRojinegro para devolver el hijo izquierdo
      * de v
      * 
      * @param v

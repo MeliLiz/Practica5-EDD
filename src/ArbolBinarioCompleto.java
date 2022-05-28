@@ -5,18 +5,18 @@ import java.util.Iterator;
 
 /**
  * <p>
- * Clase para árboles binarios completos.
+ * Clase para arboles binarios completos.
  * </p>
  *
  * <p>
- * Un árbol binario completo agrega y elimina elementos de tal forma que el
- * árbol siempre es lo más cercano posible a estar lleno.
+ * Un arbol binario completo agrega y elimina elementos de tal forma que el
+ * arbol siempre es lo mas cercano posible a estar lleno.
  * </p>
  */
 public class ArbolBinarioCompleto<T> extends ArbolBinario<T> {
-    /* Clase privada para iteradores de árboles binarios completos. */
+    /* Clase privada para iteradores de arboles binarios completos. */
     private class Iterador implements Iterator<T>{
-        /* Cola para recorrer los vértices en BFS. */
+        /* Cola para recorrer los vertices en BFS. */
         private Cola<Vertice> cola;
 
         public Iterador(){
@@ -49,7 +49,7 @@ public class ArbolBinarioCompleto<T> extends ArbolBinario<T> {
     }
 
     /**
-     * Constructor sin parámetros. Para no perder el constructor sin parámetros
+     * Constructor sin parametros. Para no perder el constructor sin parametros
      * de {@link ArbolBinario}.
      */
     public ArbolBinarioCompleto() {
@@ -57,10 +57,10 @@ public class ArbolBinarioCompleto<T> extends ArbolBinario<T> {
     }
 
     /**
-     * Construye un árbol binario completo a partir de una colección. El árbol
-     * binario completo tiene los mismos elementos que la colección recibida.
+     * Construye un arbol binario completo a partir de una coleccion. El arbol
+     * binario completo tiene los mismos elementos que la coleccion recibida.
      * 
-     * @param coleccion la colección a partir de la cual creamos el árbol
+     * @param coleccion la coleccion a partir de la cual creamos el arbol
      *                  binario completo.
      */
     public ArbolBinarioCompleto(Collection<T> coleccion) {
@@ -68,10 +68,10 @@ public class ArbolBinarioCompleto<T> extends ArbolBinario<T> {
     }
 
     /**
-     * Agrega un elemento al árbol binario completo. El nuevo elemento se coloca
-     * a la derecha del último nivel, o a la izquierda de un nuevo nivel.
+     * Agrega un elemento al arbol binario completo. El nuevo elemento se coloca
+     * a la derecha del ultimo nivel, o a la izquierda de un nuevo nivel.
      * 
-     * @param elemento el elemento a agregar al árbol.
+     * @param elemento el elemento a agregar al arbol.
      * @throws IllegalArgumentException si <code>elemento</code> es
      *                                  <code>null</code>.
      */
@@ -121,10 +121,10 @@ public class ArbolBinarioCompleto<T> extends ArbolBinario<T> {
     }
     
     /**
-     * Regresa la altura del árbol. La altura de un árbol binario completo
+     * Regresa la altura del arbol. La altura de un arbol binario completo
      * siempre es ⌊log<sub>2</sub><em>n</em>⌋.
      * 
-     * @return la altura del árbol.
+     * @return la altura del arbol.
      */
     @Override
     public int altura() {
@@ -132,9 +132,9 @@ public class ArbolBinarioCompleto<T> extends ArbolBinario<T> {
     }
     
     /**
-     * Regresa un iterador para iterar el árbol. El árbol se itera en orden BFS.
+     * Regresa un iterador para iterar el arbol. El arbol se itera en orden BFS.
      * 
-     * @return un iterador para iterar el árbol.
+     * @return un iterador para iterar el arbol.
      */
     @Override
     public Iterator<T> iterator() {

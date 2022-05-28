@@ -8,7 +8,7 @@ import java.util.Iterator;
 public class Main {
     public static void main(String[] args) {
         
-        System.out.println("PRUEBAS ÁRBOL ROJINEGRO");
+        System.out.println("PRUEBAS ARBOL ROJINEGRO");
 
         ArbolRojinegro<Integer> arbol=new ArbolRojinegro<Integer>();
         System.out.println("Agregamos el 21 y el 15");

@@ -10,7 +10,7 @@ import src.edd.Pila;
 
 public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> {
     //#####################################################################################################################################################
-    //Clase privada para un iterador de árboles bst
+    //Clase privada para un iterador de arboles bst
     private class Iterador implements Iterator<T>{
         //pila para ir almacenando los elemetos. primero los de la izq y luego los de la derecha
         Pila<Vertice> pila=new Pila<Vertice>();
@@ -18,7 +18,7 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
          * Constructor
          */
         public Iterador(){
-            //Metemos todos los nodos izquierdos a la pilaa partir de la raíz
+            //Metemos todos los nodos izquierdos a la pilaa partir de la raiz
             Vertice aux=raiz;
             while(raiz!=null){
                 pila.push(raiz);
@@ -31,7 +31,7 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
             raiz=aux;
         }
         /**
-         * Método para saber si el árbol tiene siguiente elemento
+         * Metodo para saber si el arbol tiene siguiente elemento
          */
         @Override
         public boolean hasNext(){
@@ -99,7 +99,7 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
 
     //##############################################################################################################################################################
     /**
-     * Metodo para añadir un elemento al arbol bst
+     * Metodo para awadir un elemento al arbol bst
      * @param elemento
      */
     @Override public void add(T elemento){
@@ -107,7 +107,7 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
     }
 
     /**
-     * Método para añadir un elemento al arbol bst
+     * Metodo para awadir un elemento al arbol bst
      * @param elemento
      */
     public Vertice insert(T elemento){
@@ -128,18 +128,18 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
 
 
     /**
-     * Metodo auxiliar de add para verificar la posición en la que se debe añadir el nuevo elemento
+     * Metodo auxiliar de add para verificar la posicion en la que se debe awadir el nuevo elemento
      * @param nuevo vertice a insertar
      * @param actual vertice actual auxiliar
      */
     private void verifica(Vertice nuevo, Vertice actual){
-        //Si el elemento es igual al auxiliar no hacemos nada porque sería un elemento repetido
+        //Si el elemento es igual al auxiliar no hacemos nada porque seria un elemento repetido
         if(!actual.elemento.equals(nuevo.elemento)){
             
             if(nuevo.elemento.compareTo(actual.elemento)<0){//Si el elemento del nodo nuevo es menor que el elemento del vertice actual
                 if(actual.hayIzquierdo()){//y el nodo actual tiene hijo izquierdo
-                    actual=actual.izquierdo;//el hijo izquierdo será el nodo actual
-                    verifica(nuevo,actual);//y hacemos la verificación con el nodo actual(que ahora es el hijo izquierdo)
+                    actual=actual.izquierdo;//el hijo izquierdo sera el nodo actual
+                    verifica(nuevo,actual);//y hacemos la verificacion con el nodo actual(que ahora es el hijo izquierdo)
                 }else{//si no tiene hijo izquierdo, entonces insertamos el nodo nuevo a la izquierda del actual
                     actual.izquierdo=nuevo;
                     nuevo.padre=actual;
@@ -165,14 +165,14 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
      * @param lista
      * @return
      */
-    //O(nlogn) porque el método add es de O(logn) y este proceso lo hacemos n veces
+    //O(nlogn) porque el metodo add es de O(logn) y este proceso lo hacemos n veces
     public void buildUnsorted(Lista<T> lista){
         if(!this.isEmpty()){
             throw new IllegalCallerException("Este metodo solo se puede aplicar sobre arboles vacios");
         }
         ArbolBinarioBusqueda<T> arbol=new ArbolBinarioBusqueda<T>();//arbol que regresaremos
         Iterator<T> iterador=lista.iterator();//iterador de la lista
-        //iteramos la lista y vamos añadiendo cada elemento en el arbol
+        //iteramos la lista y vamos awadiendo cada elemento en el arbol
         for(int i=0;i<lista.size();i++){
             arbol.add(iterador.next());
         }
@@ -189,7 +189,7 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
     //Tiempo O(n) porque primero verifica si hay repetidos, lo cual es tiempo n porque elimina los elementos repetidos de la lista en tiempo constante (ya que elimina el primero de la lista solamente)
     //y luego construimos el arbol binario de abajo hacia arriba.
     public void buildSorted(Lista<T> lista){
-        //verificamos que el arbol sobre el que trabajaremos esté vacío y que la lista no sea vacia
+        //verificamos que el arbol sobre el que trabajaremos este vacio y que la lista no sea vacia
         if(!this.isEmpty()){
             throw new IllegalCallerException("Este metodo solo se puede aplicar sobre arboles vacios");
         }
@@ -267,7 +267,7 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
     }
 
     /**
-     * Metodo que regresa el vertice en el que se encuentra el elemento. En caso de que el elemento no esté, regresa null.
+     * Metodo que regresa el vertice en el que se encuentra el elemento. En caso de que el elemento no este, regresa null.
      * @param raiz
      * @param elemento
      * @return
@@ -279,24 +279,24 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
         if(this.isEmpty()){
             return null;
         }
-        //Si la el elemento de la raíz es igual al elemento buscado, hemos encontrado al elemento
+        //Si la el elemento de la raiz es igual al elemento buscado, hemos encontrado al elemento
         if(raiz.elemento.equals(elemento)){
             //System.out.println(raiz.altura());
             return raiz;
-        }else{//Si el elemento de la raíz no es igual al elemento buscado
-            if(elemento.compareTo(raiz.elemento)<0){   //y el buscado es menor que elelemento de la raíz
-                if(raiz.hayIzquierdo()){   //si la raíz tiene hijo izquierdo
+        }else{//Si el elemento de la raiz no es igual al elemento buscado
+            if(elemento.compareTo(raiz.elemento)<0){   //y el buscado es menor que elelemento de la raiz
+                if(raiz.hayIzquierdo()){   //si la raiz tiene hijo izquierdo
                     //entonces buscamos en el subarbol izquierdo
                     return search2(raiz.izquierdo, elemento);
                 }else{   //si no tiene hijo izquierdo
-                    return null;//entonces el elemento buscado no está en el arbol
+                    return null;//entonces el elemento buscado no esta en el arbol
                 }
-            }else{//Si el buscado es mayor que la raíz
-                if(raiz.hayDerecho()){  //y la raíz tiene hijo derecho
+            }else{//Si el buscado es mayor que la raiz
+                if(raiz.hayDerecho()){  //y la raiz tiene hijo derecho
                     //entonces buscamos en el subarbol derecho
                     return search2(raiz.derecho, elemento);
                 }else{ //si no hay hijo derecho
-                    //entonces el elemento no está en el árbol
+                    //entonces el elemento no esta en el arbol
                     return null;
                 }
             }
@@ -324,14 +324,14 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
         }
         //Iterador del arbol que nos dan
         Iterator<T> iterador=arbol.iterator();
-        //Añadimos todos los elementos del arbol binario que nos dan
+        //Awadimos todos los elementos del arbol binario que nos dan
         while(iterador.hasNext()){
             add2(iterador.next());
         }
     }
 
     /**
-     * Metodo auxiliar de convertBST para hacer la verificacion antes de añadir el elemento
+     * Metodo auxiliar de convertBST para hacer la verificacion antes de awadir el elemento
      * @param elemento
      */
     private void add2(T elemento){
@@ -348,17 +348,17 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
     }
 
     /**
-     * Metodo auxiliar para añadir un elemento en el arbol de manera ordenada y balanceada
+     * Metodo auxiliar para awadir un elemento en el arbol de manera ordenada y balanceada
      * @param padre 
      * @param elemento
      * @return
      */
     private Vertice addBalanceado(Vertice padre, T elemento){
-        if(!padre.elemento.equals(elemento)){//Verificamos que el elemento a añadir no este repetido
-            if(elemento.compareTo(padre.elemento)<0){//Si el elemento a añadir es menor al elemento del vertice que estamos comparando, verificamos a la izquierda del arbol
+        if(!padre.elemento.equals(elemento)){//Verificamos que el elemento a awadir no este repetido
+            if(elemento.compareTo(padre.elemento)<0){//Si el elemento a awadir es menor al elemento del vertice que estamos comparando, verificamos a la izquierda del arbol
                 if(padre.hayIzquierdo()){//si hay nodo izquierdo, hacemos recursion
                     padre.izquierdo=addBalanceado(padre.izquierdo, elemento);
-                }else{//si no hay izquierdo añadimos el vertice
+                }else{//si no hay izquierdo awadimos el vertice
                     Vertice nuevo=new Vertice(elemento);
                     padre.izquierdo=nuevo;
                     nuevo.padre=padre;
@@ -384,10 +384,10 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
                         padre=rotarDerecha2(padre);//rotamos primero a la izquierda y luego a la derecha
                     }
                 }
-            }else{//Si el elemento a añadir es mayor al elemento del vertice que estamos comparando, verificamos a la derecha del arbol
+            }else{//Si el elemento a awadir es mayor al elemento del vertice que estamos comparando, verificamos a la derecha del arbol
                 if(padre.hayDerecho()){//y el vertice que estamos comparando tiene derecho
                     padre.derecho=addBalanceado(padre.derecho, elemento);//hecemos recursion
-                }else{//si no tiene derecho, añadimos el vertice
+                }else{//si no tiene derecho, awadimos el vertice
                     Vertice nuevo=new Vertice(elemento);
                     padre.derecho=nuevo;
                     nuevo.padre=padre;
@@ -427,7 +427,7 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
      */
     private Vertice rotarDerecha(Vertice raiz){
         if(!raiz.hayIzquierdo()){//si el vertice a rotsar no tiene hijo izquierdo
-            throw new IllegalArgumentException("No se puede rotar a la derecha");//no podemos hacer la rotación
+            throw new IllegalArgumentException("No se puede rotar a la derecha");//no podemos hacer la rotacion
         }
         Vertice izquierdo=raiz.izquierdo;
         raiz.izquierdo=izquierdo.derecho;
@@ -437,7 +437,7 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
         
         izquierdo.derecho=raiz;
         raiz.padre=izquierdo;
-        return izquierdo;//raíz nueva
+        return izquierdo;//raiz nueva
     }
 
     /**
@@ -447,7 +447,7 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
      */
     private Vertice rotarIzquierda(Vertice raiz){
         if(!raiz.hayDerecho()){//si el vertice a rotsar no tiene hijo derecho
-            throw new IllegalArgumentException("No se puede rotar a la izquierda");//no podemos hacer la rotación
+            throw new IllegalArgumentException("No se puede rotar a la izquierda");//no podemos hacer la rotacion
         }
         Vertice derecho=raiz.derecho;
         raiz.derecho=derecho.izquierdo;
@@ -458,7 +458,7 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
         derecho.izquierdo=raiz;
         raiz.padre=derecho;
         
-        return derecho;//raíz nueva
+        return derecho;//raiz nueva
     }
 
     /**
@@ -516,7 +516,7 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
             arreglo.add(iterador.next());
         }
         
-        vertice=balancea(arreglo,0,arreglo.size()-1);//la raiz del arbol balanceado será el vertice regresado por el metodo recursivo
+        vertice=balancea(arreglo,0,arreglo.size()-1);//la raiz del arbol balanceado sera el vertice regresado por el metodo recursivo
         vertice.padre=p;
         if(p!=null){
             if(der){
@@ -581,7 +581,7 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
 
 
      /**
-     * Método que elimina un elemento del BST
+     * Metodo que elimina un elemento del BST
      * 
      * @param raiz
      * @return
@@ -592,22 +592,22 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
     }
 
     /**
-     * Método auxiliar de delete
+     * Metodo auxiliar de delete
      * 
      * @param raiz
      * @param elemento
      * @return
      */
     public Vertice deleteAux(Vertice raiz, T elemento) {
-        // Excepción cuando el elemento sea null.
+        // Excepcion cuando el elemento sea null.
         if (elemento == null) {
             throw new IllegalArgumentException();
         }
-        // Excepción cuando el elemento no se encuentre en el BST.
+        // Excepcion cuando el elemento no se encuentre en el BST.
         if (raiz == null) {
             return null;
         }
-        // usamos el método search dos para buscar el elemento a eliminar.
+        // usamos el metodo search dos para buscar el elemento a eliminar.
         Vertice aux = search2(raiz, elemento);
         // cuando aux es null significa que el elemento no esta en el arbol
         if (aux == null) {
@@ -640,7 +640,7 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
                     aux.padre.derecho = aux.izquierdo; // cambiamos referencias para eliminar
                     aux.izquierdo.padre = aux.padre;
                 }
-            } else { // cuando el nodo a eliminar es la raíz
+            } else { // cuando el nodo a eliminar es la raiz
                 this.raiz = aux.izquierdo;
 
             }
@@ -658,7 +658,7 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
                     aux.padre.izquierdo = aux.derecho;
                     aux.derecho.padre = aux.padre; // cambiamos referencias para eliminar
                 }
-            } else { // cuando el nodo a eliminar es la raíz
+            } else { // cuando el nodo a eliminar es la raiz
                 this.raiz = aux.derecho;
 
             }
@@ -671,7 +671,7 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
                                        // izquierdo
             }
             T elem = aux2.elemento; // guardamos el elemento del hijo derecho del nodo a aliminar
-            deleteAux(aux2, elem); // aplicamos la función deleteAux para eliminar el elemento que se convertirá en
+            deleteAux(aux2, elem); // aplicamos la funcion deleteAux para eliminar el elemento que se convertira en
                                    // la raiz luego de eliminar a aux
             aux.elemento = elem; // hacemos el intercambio de referencias
             aux.elemento = aux2.elemento;
@@ -681,7 +681,7 @@ public class ArbolBinarioBusqueda<T extends Comparable> extends ArbolBinario<T> 
 
     // #############################################################################################################################################################################
     /**
-     * Método que devuelve el BST en forma de cadena. Se pondra como toString2 para que todavía tengamos la opcion de visualizar el arbol como en la clase padre
+     * Metodo que devuelve el BST en forma de cadena. Se pondra como toString2 para que todavia tengamos la opcion de visualizar el arbol como en la clase padre
      * De esta manera no sobreescribiremos el metodo de la clase padre
      * @param raiz
      * @param elemento

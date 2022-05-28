@@ -13,7 +13,9 @@ import src.edd.MonticuloMaximo;
 */
 public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collection<T>{
     
-    
+    /**
+     * Clase para iteradores de monticulos
+     */
     private class Iterador implements Iterator<T>{
         
         private int indice;
@@ -28,15 +30,15 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
             }
             throw new NoSuchElementException("No hay, no existe");
         }
+    }//FIN DE cLASE ITERADOR
 
-    }
-
-
-    private static class Adaptador<T extends Comparable<T>>
-    implements ComparableIndexable<Adaptador<T>>{
+    /**
+     * Clase para Adaptadores
+     */
+    private static class Adaptador<T extends Comparable<T>> implements ComparableIndexable<Adaptador<T>>{
         /* El elemento. */
         private T elemento;
-        /* El índice. */
+        /* El indice. */
         private int indice;
 
         /* Crea un nuevo comparable indexable. */
@@ -45,13 +47,13 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
             this.indice = -1;
         }
 
-        /* Regresa el índice. */
+        /* Regresa el indice. */
         @Override
         public int getIndice() {
             return this.indice;
         }
 
-        /* Define el índice. */
+        /* Define el indice. */
         @Override
         public void setIndice(int indice) {
             this.indice = indice;
@@ -70,26 +72,42 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
         public T getElemento(){
             return elemento;
         }
-    }
+    }//FIN DE CLASE ADAPTADOR
+
+
     /* numero de elementos en el arreglo */
     private int elementos;
     /* Nuestro arbol representado como arreglo */
     private T[] arbol;
 
-    /* Con esto podemos crear arreglos genericos sin que el compilador marque error */
-    @SuppressWarnings("unchecked") private T[] nuevoArreglo(int n){
-        return (T[])(new ComparableIndexable[n]);
-    }
 
+    /* Con esto podemos crear arreglos genericos sin que el compilador marque error */
+    @SuppressWarnings("unchecked") 
+    private T[] nuevoArreglo(int n){
+        return (T[])(new ComparableIndexable[n]);
+    }//FIN DE NUEVOARREGLO
+
+    /**
+     * Constructor sin parametros;
+     */
     public MonticuloMinimo(){
         elementos = 0;
         arbol = nuevoArreglo(100);
-    }
+    }//FIN DE CONSTRUCTOR 1
 
+    /**
+     * Constructor que recibe una coleccion
+     * @param coleccion
+     */
     public MonticuloMinimo(Collection<T> coleccion){
         this(coleccion,coleccion.size());
-    }
+    }//FIN DE CONSTRUCTOR 2
 
+    /**
+     * Constructor que recibe un iterable
+     * @param iterable
+     * @param n
+     */
     public MonticuloMinimo(Iterable<T> iterable, int n ){
         elementos = n;
         arbol = nuevoArreglo(n);
@@ -103,7 +121,18 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
             monticuloMin(j);
             
         }
-    }
+    }//FIN DE CONSTRUCTOR 3
+
+    /**
+     * Constructor que recibe un monticulo maximo
+     * @param max
+     */
+    public MonticuloMinimo(MonticuloMaximo<T> max){
+        MonticuloMinimo<T> nuevo=new MonticuloMinimo<>();
+        nuevo=nuevo.MontMax_MontMin(max);
+        this.arbol=nuevo.arbol;
+        this.elementos=nuevo.elementos;
+    }//FIN DE CONSTRUCTOR 4
 
     private void monticuloMin(int i){
         int izq = i * 2 +1 ;
@@ -126,16 +155,21 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
         else{
             swap(arbol[minimo],arbol[i]);
         }
-    }
+    }//FIN DE MONTICULOMIN
 
+    //Metodo para actualizar posiciones e indices
     private void swap(T i, T j) {
         int aux = j.getIndice();
         arbol[i.getIndice()] = j;
         arbol[j.getIndice()] = i;
         j.setIndice(i.getIndice());
         i.setIndice(aux);
-    }
+    }//FIN DE SWAP
 
+    /**
+     * Metodo para awadir un elemento al heap
+     * @param elemento El elemento a awadir
+     */
     @Override public void add(T elemento){
         if (elementos == arbol.length) {
             duplicaSize();
@@ -144,8 +178,9 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
         arbol[elementos] = elemento;
         elementos++;
         recorreArriba(elementos - 1);
-    }
+    }//FIN DE ADD
 
+    //Metodo para duplicar el tamawo del arreglo de nuestro arbol
     private void duplicaSize(){
         T[] arr = nuevoArreglo(arbol.length * 2);
         elementos = 0;
@@ -153,8 +188,9 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
             arr[elementos++] = e;
         }
         this.arbol = arr;
-    }
+    }//FIN DE DUPLICASIZE
 
+    //Metodo para recorrer el arbol hacia arriba y verificar que se cumpla condicion de minheap
     private void recorreArriba(int i){
         int padre = (i-1) / 2;
         int m = i;
@@ -169,11 +205,10 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
             arbol[padre].setIndice(padre);
             recorreArriba(m);
         }
-    }
+    }//FIN DE RECORREARRIBA
     
     /**
      * Elimina el elemento minimo del monticulo
-     * 
      */
     public T delete(){
         if(elementos == 0){
@@ -187,14 +222,11 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
         else{
             return null;
         }
-
-    }
+    }//FIN DE DELETE()
 
     /**
      * Elimina un elmento del monticulo
-     * 
      */
-
     public boolean delete(T elemento){
         if(elemento ==null || isEmpty() ){
             return false;
@@ -210,10 +242,10 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
         elementos --;
         recorreAbajo(i);
         return true;
-    }
+    }//FIN DE DELETE(ELEM)
 
     
-
+    //Metodo para recorrer el arbol hacia abajo y verificar que se cumpla condicion de minheap
     private void recorreAbajo(int i){
         if(i < 0){
             return;
@@ -221,9 +253,6 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
         int izq = 2*i +1;
         int der = 2*i +2;
         int min = der;
-        //No existen
-        //  0, 1
-        // [],[]
         if(izq >= elementos && der >= elementos){
             return;
         }
@@ -241,13 +270,8 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
             swap(arbol[i], arbol[min]);
             //Validar la recursion. 
             recorreAbajo(i);
-            
         }
-        
-        
-
-    }
-
+    }//FIN DE RECORREABAJO
 
     @Override public boolean contains(T elemento){
         for(T e: arbol){
@@ -255,11 +279,11 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
                 return true;
         }
         return false;
-    }
+    }//FIN DE CONTAINS
 
     @Override public boolean isEmpty(){
         return elementos == 0;
-    }
+    }//FIN DE ISEMPTY
     
     @Override
     public void empty() {
@@ -267,19 +291,24 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
             arbol[i] = null;
         }
         elementos = 0;
-    }
+    }//FIN DE EMPTY
 
     @Override
     public int size(){
         return elementos;
-    }
+    }//FIN DE SIZE
 
+    /**
+     * Metodo para obtener el elemento en el indice i del heap
+     * @param i
+     * @return
+     */
     public T get(int i){
         if (i< 0 || i>= elementos) {
             throw new NoSuchElementException("Indice no valido");
         }
         return arbol[i];
-    }
+    }//FIN DE GET
 
 
     @Override public String toString(){
@@ -288,7 +317,7 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
             resultado += arbol[i].toString() + ",";
         }
         return resultado;
-    }
+    }//FIN DE TOSTRING
 
     @Override
     public boolean equals(Object obj) {
@@ -305,24 +334,24 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
             }
         }
         return true;
-    }
+    }//FIN DE EQUALS
 
     /**
-     * Regresa un iterador para iterar el montículo mínimo. El montículo se
+     * Regresa un iterador para iterar el monticulo minimo. El monticulo se
      * itera en orden BFS.
      * 
-     * @return un iterador para iterar el montículo mínimo.
+     * @return un iterador para iterar el monticulo minimo.
      */
     @Override
     public Iterator<T> iterator() {
         return new Iterador();
-    }
+    }//FIN DE ITERATOR
 
     /**
-    * Ordena la colección usando HeapSort.
+    * Ordena la coleccion usando HeapSort.
     * @param <T> tipo del que puede ser el arreglo.
-    * @param coleccion la colección a ordenar.
-    * @return una lista ordenada con los elementos de la colección.
+    * @param coleccion la coleccion a ordenar.
+    * @return una lista ordenada con los elementos de la coleccion.
     */
     public static <T extends Comparable<T>> Lista<T> heapSort(Collection<T> coleccion) {
         Iterator<T> iterador=coleccion.iterator();
@@ -339,13 +368,13 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
             l.add(el);
         }
         return l;
-    }
+    }//FIN DE HEAPSORT
 
     /**
      * Metodo para saber si un arreglo es monticulo minimo
      * @param <T> El tipo del que puede ser el arreglo
      * @param arreglo El arreglo a evaluar
-     * @return boolean true si eel arreglo es montículo minimo, false en otro caso
+     * @return boolean true si eel arreglo es monticulo minimo, false en otro caso
      */
     public <T extends Comparable<T>>boolean esMontMin(T[] arreglo){
         MonticuloMinimo<Adaptador<T>> m=new MonticuloMinimo<Adaptador<T>>();
@@ -363,9 +392,9 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
             }
         }
         return true;
-    }
+    }//FIN DE ESMONTMIN
 
-    //Este solo funciona para T comparable indexables
+    //Mismo metodo que el anterior pero este solo funciona para T comparable indexables
     public boolean esMontMin2(T[] arreglo){
         MonticuloMinimo<T> m=new MonticuloMinimo<T>();
         for(int i=0;i<arreglo.length;i++){
@@ -380,7 +409,7 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
             }
         }
         return true;
-    }
+    }//FIN DE ESMONTMIN2
 
     /**
      * Metodo para convertir un monticulo maximo a uno minimo
@@ -395,20 +424,6 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
             m.add(e);
         }
         return m;
-    }
-
-    /*public <T extends Comparable<T>> T[] MontMax_MontMin2(T[] arr){
-        MonticuloMinimo<Adaptador<T>> m=new MonticuloMinimo<Adaptador<T>>();
-        for(int i=0;i<arr.length;i++){
-            Adaptador<T> actual=new Adaptador<T>(arr[i]);
-            m.add(actual);
-        }
-        Iterator<Adaptador<T>> iterador=m.iterator();
-        T[] regreso=(T[])(new ComparableIndexable[arr.length]);
-        for(int i=0;i<arr.length;i++){
-            regreso[i]=iterador.next().elemento;
-        }
-        return regreso;
-    }*/
+    }//FIN DE MONTMAX_MONTMIN
 
 }

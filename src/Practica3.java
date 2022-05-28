@@ -9,9 +9,9 @@ public class Practica3 {
     private static int s=0;
     //################################################################################################################################################################
     /**
-     * Método que dada una lista de enteros y un entero N, deberá encontrar la
-     * pareja de números en la
-     * lista tal que la suma de estos, sea la más cercana a N
+     * Metodo que dada una lista de enteros y un entero N, debera encontrar la
+     * pareja de numeros en la
+     * lista tal que la suma de estos, sea la mas cercana a N
      * 
      * @param lista
      * @param n
@@ -58,7 +58,7 @@ public class Practica3 {
                 break;
             }
         }
-        System.out.println("La pareja de números cuya suma es más cercana a " + n + " es: " + num1 + " y " + num2);
+        System.out.println("La pareja de numeros cuya suma es mas cercana a " + n + " es: " + num1 + " y " + num2);
 
     }
 
@@ -77,7 +77,7 @@ public class Practica3 {
     }
     
     /**
-     * Metodo auxiliar del método permutaCadena
+     * Metodo auxiliar del metodo permutaCadena
      * @param numRecursion nivel en el arbol
      * @param pila 
      * @param numCaracteres todo lo que podemos bajar en el arbol hasta encontrar una solucion posible
@@ -85,7 +85,7 @@ public class Practica3 {
      */
     private static void permuta(int numRecursion, Pila<Character> pila, int numCaracteres, Cola<Character> cola){
         if(numRecursion==numCaracteres){//cuando ya estamos en el ultimo nivel del arbol
-            System.out.println(pila);//mostramos la solución generada
+            System.out.println(pila);//mostramos la solucion generada
         }else{
             //hacia los lados
             for(int i=numRecursion; i<numCaracteres;i++){//desde el nivel en que estamos hasta el ultimo nivel al que podemos llegar en el arbol porque el numero de permutaciones al bajar en el arbol va disminuyendo
@@ -101,13 +101,13 @@ public class Practica3 {
 
     //###################################################################################################################################################################################################################################
     /**
-     * Método para encontrar todos los posibles tableros en los que se colocan n reinas sin que se ataquen
+     * Metodo para encontrar todos los posibles tableros en los que se colocan n reinas sin que se ataquen
      * @param n el numero de reinas
      */
     public static void N_reinas(int n){
         //Tablero donde colocaremos a las reinas
         String[][] tablero=new String[n][n];
-        //Arreglo que representa las columnas para guardar la posición de cada reina en las filas
+        //Arreglo que representa las columnas para guardar la posicion de cada reina en las filas
         int[] posFilas=new int[n];
         int[] copia=new int[n];
         //Llenamos los arreglos
@@ -121,7 +121,7 @@ public class Practica3 {
     }
 
     /**
-     * Metodo auxiliar del método N_Reinas
+     * Metodo auxiliar del metodo N_Reinas
      * @param nivel
      * @param posFilas
      * @param tablero
@@ -130,7 +130,7 @@ public class Practica3 {
         int numReinas=posFilas.length;
         //System.out.println(numReinas);
         //System.out.println(nivel);
-        if(nivel==numReinas){//Caso base: encontramos una solución cuando el nivel del arbol es el ultimo, cuando ya pudimos poner a todas las reinas
+        if(nivel==numReinas){//Caso base: encontramos una solucion cuando el nivel del arbol es el ultimo, cuando ya pudimos poner a todas las reinas
             //System.out.println("base");
             s++;
             System.out.println(s+" ############################");
@@ -149,23 +149,23 @@ public class Practica3 {
             }
         
         }else{
-            for(posFilas[nivel]=0;posFilas[nivel]<numReinas;posFilas[nivel]++){//nos movemos a través de los nodos en el mismo nivel del arbol
+            for(posFilas[nivel]=0;posFilas[nivel]<numReinas;posFilas[nivel]++){//nos movemos a traves de los nodos en el mismo nivel del arbol
                 if(validaMovimiento(posFilas,nivel)){//validamos que el movimiento se pueda realizar
                     //System.out.println("Recursiva");
-                    recursiva(nivel+1, posFilas, tablero);//con cada recursión aumentamos un nodo hacia abajo en el arbol
+                    recursiva(nivel+1, posFilas, tablero);//con cada recursion aumentamos un nodo hacia abajo en el arbol
                 }
             }
         }
     } 
     /**
-     * Metodo auxiliar del metodo recursiva para el método N_reinas
-     * @param posFilas arreglo para la posición de las filas de cada reina
+     * Metodo auxiliar del metodo recursiva para el metodo N_reinas
+     * @param posFilas arreglo para la posicion de las filas de cada reina
      * @param nivel el nivel del arbol
      * @return
      */
     private static boolean validaMovimiento(int[] posFilas, int nivel){
         for(int i=0;i<nivel;i++){
-            //Si las reinas están en la misma fila o en la misma diagonal
+            //Si las reinas estan en la misma fila o en la misma diagonal
             if(posFilas[i]==posFilas[nivel]||Math.abs(nivel-i)==Math.abs(posFilas[nivel]-posFilas[i])){
                 return false;
             }
@@ -198,10 +198,10 @@ public class Practica3 {
                 }
                 sumaActual += listaPrimos[i];//sumamos el elemento de la posicion i
                 //System.out.println("Suma actual: "+sumaActual);
-                formando.add(listaPrimos[i]);//añadimos el elemento a la lista que estamos formando de soluciones parciales
+                formando.add(listaPrimos[i]);//awadimos el elemento a la lista que estamos formando de soluciones parciales
                 suma(formando, listaPrimos,sumaActual, sumacte,  k, i+1);//recursion
                 sumaActual -= listaPrimos[i];//restamos lo que habiamos sumado
-                formando.pop();//quitamos de la lista lo que le habíamos agregado
+                formando.pop();//quitamos de la lista lo que le habiamos agregado
             }
         }
     }
@@ -235,7 +235,7 @@ public class Practica3 {
     }
     
     /**
-     * Metodo auxiliar para obtemner los numeros primos desde 2 hasta un número dado
+     * Metodo auxiliar para obtemner los numeros primos desde 2 hasta un numero dado
      * @param n el numero limite
      * @return
      */
@@ -247,14 +247,14 @@ public class Practica3 {
             boolean esPrimo = true;
             // Ciclo for para tomar a los posibles divisores
             for (int divisor = 2; divisor <= numero / 2; divisor++) {
-                // Condicional para ver si el número tiene divisores
+                // Condicional para ver si el numero tiene divisores
                 if (numero % divisor == 0) {
-                    esPrimo = false; // Si el número tiene algún divisor, esPrimo cambia a false
+                    esPrimo = false; // Si el numero tiene algun divisor, esPrimo cambia a false
                 }
             }
             // Condicional que verifica si esPrimo se mantiene en true
             if (esPrimo) {
-                primos.add(numero); // Si esPrimo se mantiene en true, imprimir el número
+                primos.add(numero); // Si esPrimo se mantiene en true, imprimir el numero
             }
         }
         return primos;
@@ -262,9 +262,9 @@ public class Practica3 {
 
     //#############################################################################################################################################################################################################################################################
     /**
-     * Metodo para encontrar la raíz cuadrada de un numero usando búsqueda binaria
+     * Metodo para encontrar la raiz cuadrada de un numero usando busqueda binaria
      * Margen de error: 1e − 5
-     * @param n numero del que queremos saber su raíz
+     * @param n numero del que queremos saber su raiz
      */
     public static void sqrtBusqBin(double n){
         //Tomamos un intervalo de 0 a n
@@ -280,7 +280,7 @@ public class Practica3 {
                 //actualizamos el inicio del rango a la mitad
                 inicioRango=mitad;
             }else{//si la mitad al cuadrado es mayor a n
-                //actualizamos el fin del intervalo para que se evalúe hasta la mitad
+                //actualizamos el fin del intervalo para que se evalue hasta la mitad
                 finRango=mitad; 
             }
             //sacamos la mitad del nuevo intervalo
@@ -301,7 +301,7 @@ public class Practica3 {
         prueba2.add(18);
         sumaCercana(prueba2, 13);
         System.out.println("********************************************************************");
-        System.out.println("Prueba del método permutaCadena");
+        System.out.println("Prueba del metodo permutaCadena");
         System.out.println("Permutaciones de la cadena \"ABC\"");
         permutaCadena("ABC");
         System.out.println("********************************************************************");

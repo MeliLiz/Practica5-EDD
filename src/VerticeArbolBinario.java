@@ -2,76 +2,76 @@ package src.edd;
 
 import java.util.NoSuchElementException;
 /**
- * Interfaz para vértices de árboles binarios.
+ * Interfaz para vertices de arboles binarios.
  */
 public interface VerticeArbolBinario<T> {
 
     /**
-     * Nos dice si el vértice tiene vértice padre.
+     * Nos dice si el vertice tiene vertice padre.
      * 
-     * @return <tt>true</tt> si el vértice tiene vértice padre, <tt>false</tt>
+     * @return <tt>true</tt> si el vertice tiene vertice padre, <tt>false</tt>
      *         en otro caso.
      */
     public boolean hayPadre();
 
     /**
-     * Nos dice si el vértice tiene vértice izquierdo.
+     * Nos dice si el vertice tiene vertice izquierdo.
      * 
-     * @return <tt>true</tt> si el vértice tiene vértice izquierdo,
+     * @return <tt>true</tt> si el vertice tiene vertice izquierdo,
      *         <tt>false</tt> en otro caso.
      */
     public boolean hayIzquierdo();
 
     /**
-     * Nos dice si el vértice tiene vértice derecho.
+     * Nos dice si el vertice tiene vertice derecho.
      * 
-     * @return <tt>true</tt> si el vértice tiene vértice derecho, <tt>false</tt>
+     * @return <tt>true</tt> si el vertice tiene vertice derecho, <tt>false</tt>
      *         en otro caso.
      */
     public boolean hayDerecho();
 
     /**
-     * Regresa el vértice padre del vértice.
+     * Regresa el vertice padre del vertice.
      * 
-     * @return el vértice padre del vértice.
-     * @throws NoSuchElementException si el vértice no tiene padre.
+     * @return el vertice padre del vertice.
+     * @throws NoSuchElementException si el vertice no tiene padre.
      */
     public VerticeArbolBinario<T> padre();
 
     /**
-     * Regresa el vértice izquierdo del vértice.
+     * Regresa el vertice izquierdo del vertice.
      * 
-     * @return el vértice izquierdo del vértice.
-     * @throws NoSuchElementException si el vértice no tiene izquierdo.
+     * @return el vertice izquierdo del vertice.
+     * @throws NoSuchElementException si el vertice no tiene izquierdo.
      */
     public VerticeArbolBinario<T> izquierdo();
 
     /**
-     * Regresa el vértice derecho del vértice.
+     * Regresa el vertice derecho del vertice.
      * 
-     * @return el vértice derecho del vértice.
-     * @throws NoSuchElementException si el vértice no tiene derecho.
+     * @return el vertice derecho del vertice.
+     * @throws NoSuchElementException si el vertice no tiene derecho.
      */
     public VerticeArbolBinario<T> derecho();
 
     /**
-     * Regresa la altura del vértice.
+     * Regresa la altura del vertice.
      * 
-     * @return la altura del vértice.
+     * @return la altura del vertice.
      */
     public int altura();
 
     /**
-     * Regresa la profundidad del vértice.
+     * Regresa la profundidad del vertice.
      * 
-     * @return la profundidad del vértice.
+     * @return la profundidad del vertice.
      */
     public int profundidad();
 
     /**
-     * Regresa el elemento que contiene el vértice.
+     * Regresa el elemento que contiene el vertice.
      * 
-     * @return el elemento que contiene el vértice.
+     * @return el elemento que contiene el vertice.
      */
     public T get();
 }
