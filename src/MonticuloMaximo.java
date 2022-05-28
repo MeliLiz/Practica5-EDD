@@ -119,17 +119,16 @@ public class MonticuloMaximo<T extends ComparableIndexable<T>> implements Collec
         }
 
         else{
-            swap(maximo,i);
+            swap(arbol[maximo],arbol[i]);
         }
     }
 
-    private void swap(int i, int j){
-        arbol[i].setIndice(j);
-        arbol[j].setIndice(i);
-        T e = arbol[i];
-        arbol[i] = arbol[j];
-        arbol[j] = e;
-
+    private void swap(T i, T j) {
+        int aux = j.getIndice();
+        arbol[i.getIndice()] = j;
+        arbol[j.getIndice()] = i;
+        j.setIndice(i.getIndice());
+        i.setIndice(aux);
     }
 
     @Override public void add(T elemento){
@@ -201,7 +200,7 @@ public class MonticuloMaximo<T extends ComparableIndexable<T>> implements Collec
         int i = elemento.getIndice();
         if(i <0 || elementos <=i )
             return false;
-        swap(i, elementos -1);
+        swap(arbol[i], arbol[elementos -1]);
         arbol[elementos -1] = null;
         elementos --;
         recorreAbajo(i);
@@ -234,7 +233,7 @@ public class MonticuloMaximo<T extends ComparableIndexable<T>> implements Collec
             }
         }
         if(arbol[max].compareTo(arbol[i])>0){
-            swap(i, max);
+            swap(arbol[i], arbol[max]);
             //Validar la recursion. 
             recorreAbajo(i);
             
