@@ -58,6 +58,19 @@ public class Main {
         lista.add(7);
         ArbolRojinegro<Integer> a =new ArbolRojinegro<Integer>(lista,false, false);
         System.out.println(a);*/
+
+        int n=5;
+        
+        Object o=1;
+        Integer i=5;
+
+        System.out.println(i==n);
+
+        if(o.getClass().equals(i.getClass())){
+            System.out.println(o.getClass());
+        }
+
+        
         
     }
 }

@@ -268,6 +268,7 @@ public class MonticuloMinimo<T extends ComparableIndexable<T>> implements Collec
         }
         if(arbol[min].compareTo(arbol[i])<0){
             swap(arbol[i], arbol[min]);
+            recorreAbajo(min);
             //Validar la recursion. 
             recorreAbajo(i);
         }

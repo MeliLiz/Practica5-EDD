@@ -256,6 +256,7 @@ public class MonticuloMaximo<T extends ComparableIndexable<T>> implements Collec
         }
         if(arbol[max].compareTo(arbol[i])>0){
             swap(arbol[i], arbol[max]);
+            recorreAbajo(max);
             //Validar la recursion. 
             recorreAbajo(i);
         }

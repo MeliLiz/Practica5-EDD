@@ -48,6 +48,9 @@ public class PruebaMonti{
         enteros.add(8);
         enteros.add(7);
         enteros.add(3);
+        enteros.add(30);
+        enteros.add(21);
+        enteros.add(19);
         //Mostramos lista original
         System.out.println("Lista original: "+enteros);
         //Ordenamos la lista
